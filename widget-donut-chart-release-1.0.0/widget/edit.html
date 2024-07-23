@@ -1,0 +1,64 @@
+<!-- Copyright start
+  Copyright (C) 2008 - 2024 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end -->
+  <form data-ng-submit="save()" class="noMargin" name="editWidgetForm" data-ng-class="{'state-wait': processing }"
+  novalidate>
+  <div class="modal-header">
+      <h3 class="modal-title col-md-9">D3 Edit View</h3>
+      <button type="button" class="close" data-ng-click="cancel()" data-dismiss="modal" aria-label="Close"
+          id="close-edit-widget-form-btn">
+          <div aria-hidden="true" class="version-button">+</div>
+      </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group"
+          data-ng-class="{ 'has-error': editWidgetForm.title.$invalid && editWidgetForm.title.$touched }">
+          <label for="title" class="control-label">Title
+          </label>
+          <input id="title" name="title" type="text" class="form-control" data-ng-model="config.title">
+      </div>
+      <div class="form-group"
+          data-ng-class="{ 'has-error': editWidgetForm.cardTilesModule.$invalid && editWidgetForm.cardTilesModule.$touched }"
+          data-ng-if="modules || playbookModules">
+          <label for="cardTilesModule" class="control-label">Data Source<span class="text-danger">*</span>
+          </label>
+          <select name="cardTilesModule" id="cardTilesModule" class="form-control"
+              data-ng-options="module.type as module.name for module in modules | playbookModules"
+              data-ng-model="config.module" data-ng-change="loadAttributes()" required>
+              <option value="">Select an Option</option>
+          </select>
+          <div data-cs-messages="editWidgetForm.cardTilesModule"></div>
+      </div>
+      <div class="margin-top-md margin-bottom-md">
+        <h6>Filter Criteria</h6>
+      </div>
+      <div class="form-group"
+        data-ng-class="{ 'has-error': editRecordCardWidgetForm.cardTilesfilters.$invalid && editRecordCardWidgetForm.cardTilesfilters.$touched }">
+        <div data-cs-conditional name="cardTilesfilters" data-ng-if="fieldsArray.length > 0"
+            data-fields="fields" data-reset-field="fields" data-mode="'queryFilters'"
+            data-ng-model="config.query" data-parent-form="editRecordCardWidgetForm"
+            data-enable-expression="(page==='dashboard' || page==='reporting')" data-show-uuid="true"
+            data-form-name="'editRecordCardWidgetForm'"></div>
+        <div data-cs-messages="editRecordCardWidgetForm.cardTilesfilters"></div>
+      </div>
+      <div class="form-group"
+                data-ng-class="{ 'has-error': editRecordCardWidgetForm.cardTilesTitle.$invalid && editRecordCardWidgetForm.cardTilesTitle.$touched}">
+                <label for="moduleTitle" class="control-label">Field Title <span class="text-danger">*</span></label>
+                <select id="moduleTitle" name="moduleTitle" class="form-control"
+                    data-ng-model="config.moduleTitle"
+                    data-ng-options="field.name as field.title for field in fieldsArray | orderBy: 'title'"
+                    data-ng-required="true" required="required">
+                    <option value="" class="" selected="selected">Select a field</option>
+                </select>
+                <div data-cs-messages="editRecordCardWidgetForm.cardTilesTitle"></div>
+            </div>
+  </div>
+  <div class="modal-footer">
+      <button id="edit-widget-save" type="submit" class="btn btn-sm btn-primary"><i
+              class="icon icon-check margin-right-sm"></i>Save</button>
+      <button id="edit-widget-cancel" type="button" class="btn btn-sm btn-default" data-ng-click="cancel()"><i
+              class="icon icon-close margin-right-sm"></i>Close</button>
+  </div>
+</form>

@@ -1,0 +1,20 @@
+{
+	"name": "donutChart",
+	"title": "Donut Chart",
+	"subTitle": "d3Library",
+	"version": "1.0.0",
+	"publishedDate": 1716461468,
+	"releaseNotes": "unavailable",
+	"metadata": {
+		"description": "",
+		"pages": [
+			"Dashboard",
+			"Reports"
+		],
+		"certified": "No",
+		"publisher": "",
+		"compatibility": [
+			"7.5.0"
+		]
+	}
+}
